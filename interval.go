@@ -14,10 +14,8 @@ func (i interval) Contains(c interval) bool {
 func (i interval) Intersects(c interval) bool {
 	if i.from > c.from {
 		return c.to >= i.from
-	} else {
-		return i.to >= c.from
 	}
-	return false
+	return i.to >= c.from
 }
 
 func (i interval) Merge(c interval) interval {
