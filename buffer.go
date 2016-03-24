@@ -11,8 +11,8 @@ type Buffer interface {
 	io.ReaderAt
 	io.WriterAt
 
-	// How much data is in the buffer in bytes
-	Len() int64
+	// The capacity of the buffer
+	Cap() int64
 }
 
 type File struct {
@@ -44,7 +44,7 @@ func NewFileBufferString(s string) (*File, error) {
 	return f, err
 }
 
-func (f *File) Len() int64 {
+func (f *File) Cap() int64 {
 	return f.Size
 }
 

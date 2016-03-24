@@ -8,14 +8,14 @@ func TestReaderReadsToEOF(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	r := NewReader(data, data.Len(), 0)
-	buf := make([]byte, data.Len())
+	r := NewReader(data, data.Cap(), 0)
+	buf := make([]byte, data.Cap())
 	n, err := r.Read(buf)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	if int64(n) != data.Len() {
-		t.Fatalf("Was expecting %d, got %d", data.Len(), n)
+	if int64(n) != data.Cap() {
+		t.Fatalf("Was expecting %d, got %d", data.Cap(), n)
 	}
 }

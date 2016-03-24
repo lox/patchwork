@@ -22,7 +22,7 @@ type Patchwork struct {
 func New(buf Buffer) (*Patchwork, error) {
 	return &Patchwork{
 		buf:     buf,
-		size:    int64(buf.Len()),
+		size:    int64(buf.Cap()),
 		cond:    sync.NewCond(&sync.Mutex{}),
 		written: &intervalSet{},
 	}, nil
