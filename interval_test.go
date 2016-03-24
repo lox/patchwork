@@ -2,20 +2,6 @@ package patchwork
 
 import "testing"
 
-func TestIntervalChunk(t *testing.T) {
-	i := interval{0, 105}
-	c := i.Chunk(10)
-
-	if len(c) != 11 {
-		t.Fatalf("Expected 11 chunks, got %d", len(c))
-	}
-
-	if c[10].from != 100 && c[10].to != 105 {
-		t.Fatalf("Expected 100-105 for last interval, got %#v",
-			c[10])
-	}
-}
-
 func TestIntervalContainsAndIntersects(t *testing.T) {
 	tests := []struct {
 		i1, i2     interval
