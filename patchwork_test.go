@@ -26,10 +26,7 @@ func TestWritingIntoPatchwork(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	pw, err := New(buf)
-	if err != nil {
-		t.Fatal(err)
-	}
+	pw := New(buf)
 	defer pw.Close()
 
 	if _, err = randCopy(pw, bytes.NewBufferString(data)); err != nil && err != io.EOF {
@@ -54,10 +51,7 @@ func TestReadingFromPatchwork(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	pw, err := New(buf)
-	if err != nil {
-		t.Fatal(err)
-	}
+	pw := New(buf)
 	defer pw.Close()
 
 	if _, err := pw.WriteAt([]byte(data), 0); err != nil {
@@ -82,10 +76,7 @@ func TestBlockingReadsFromPatchwork(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	pw, err := New(buf)
-	if err != nil {
-		t.Fatal(err)
-	}
+	pw := New(buf)
 	defer pw.Close()
 
 	var wg sync.WaitGroup
@@ -131,10 +122,7 @@ func TestConcurrentStreamingReads(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	pw, err := New(buf)
-	if err != nil {
-		t.Fatal(err)
-	}
+	pw := New(buf)
 	defer pw.Close()
 
 	var wg sync.WaitGroup

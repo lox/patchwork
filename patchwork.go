@@ -19,13 +19,13 @@ type Patchwork struct {
 }
 
 // New creates a Patchwork with the given Buffer
-func New(buf Buffer) (*Patchwork, error) {
+func New(buf Buffer) *Patchwork {
 	return &Patchwork{
 		buf:     buf,
 		size:    int64(buf.Cap()),
 		cond:    sync.NewCond(&sync.Mutex{}),
 		written: &intervalSet{},
-	}, nil
+	}
 }
 
 // WriteAt fulfils io.WriterAt and allows concurrent writes
