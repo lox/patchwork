@@ -34,8 +34,9 @@ func TestReadmeExample(t *testing.T) {
 			if err != nil {
 				log.Fatal(err)
 			}
-
-			log.Printf("Full stream: %q", b)
+			if len(b) != 10 {
+				t.Fatalf("Expected 10 bytes, got %d bytes", len(b))
+			}
 			wg.Done()
 		}()
 	}
@@ -44,14 +45,11 @@ func TestReadmeExample(t *testing.T) {
 	for i := 0; i < 10; i += 2 {
 		wg.Add(1)
 		go func(offset int) {
-			log.Printf("Reading at %d", offset)
 			b := make([]byte, 2)
 			_, err := pw.ReadAt(b, int64(offset))
 			if err != nil {
 				log.Fatal(err)
 			}
-
-			log.Printf("Chunk: %q", b)
 			wg.Done()
 		}(i)
 	}
