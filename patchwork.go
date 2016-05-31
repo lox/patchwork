@@ -73,7 +73,7 @@ func (p *Patchwork) Close() error {
 }
 
 func (p *Patchwork) Reader() io.Reader {
-	return NewReader(p, p.size, 0)
+	return io.NewSectionReader(p, 0, p.size)
 }
 
 func (p *Patchwork) Writer() io.Writer {
